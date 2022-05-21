@@ -1,0 +1,11 @@
+---
+server:
+  port: 8882
+spring:
+  application:
+    name: app-development-prototype-kafka
+# configuration for spring actuator
+management:
+  health:
+    probes:
+      enabled: true

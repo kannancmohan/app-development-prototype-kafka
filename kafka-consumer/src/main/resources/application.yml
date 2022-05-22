@@ -11,6 +11,8 @@ spring:
   application:
     name: app-development-prototype-kafka-consumer
   cloud:
+    config:
+      enabled: false # disable retrieval of configuration from the Config Server
     function:
       definition: messageEventConsumer #list of the consumer/producer function names
     stream:
@@ -33,5 +35,6 @@ spring:
 #            useNativeEncoding: true # Enables using the custom serializer
         messageEventConsumer-in-0:
           destination: msp-dev-message-event-topic
+          group: msp-message-event-group # consumer group name
           consumer:
             use-native-decoding: true # Enables using the custom deserializer

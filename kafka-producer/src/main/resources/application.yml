@@ -1,11 +1,38 @@
 ---
 server:
   port: 8883
-spring:
-  application:
-    name: app-development-prototype-kafka-producer
 # configuration for spring actuator
 management:
   health:
     probes:
       enabled: true
+spring:
+  application:
+    name: app-development-prototype-kafka-producer
+  cloud:
+    config:
+      enabled: false # disable retrieval of configuration from the Config Server
+    function:
+      definition: messageEventProducer #list of the consumer/producer function names
+    stream:
+      kafka:
+        bindings:
+          messageEventProducer-out-0:
+            producer:
+              configuration:
+                value.serializer: app.development.prototype.kafka.producer.event.converter.MessageEventSerializer
+        #          messageEventConsumer-in-0:
+        #            consumer:
+        #              configuration:
+        #                value.deserializer: app.development.prototype.kafka.consumer.event.coverter.MessageEventDeSerializer
+        binder:
+          brokers: localhost:9092
+      bindings:
+        messageEventProducer-out-0:
+          destination: msp-dev-message-event-topic
+          producer:
+            useNativeEncoding: true # Enables using the custom serializer
+#        messageEventConsumer-in-0:
+#          destination: msp-dev-message-event-topic
+#          consumer:
+#            use-native-decoding: true # Enables using the custom deserializer

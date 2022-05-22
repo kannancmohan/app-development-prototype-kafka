@@ -1,12 +1,12 @@
-package com.kcm.msp.dev.app.development.prototype.kafka;
+package app.development.prototype.kafka.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppDevelopmentPrototypeKafkaApplication {
+public class KafkaConsumerApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(AppDevelopmentPrototypeKafkaApplication.class, args);
+    SpringApplication.run(KafkaConsumerApplication.class, args);
   }
 }

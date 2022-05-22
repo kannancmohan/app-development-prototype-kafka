@@ -3,7 +3,7 @@ server:
   port: 8882
 spring:
   application:
-    name: app-development-prototype-kafka
+    name: app-development-prototype-kafka-consumer
 # configuration for spring actuator
 management:
   health:

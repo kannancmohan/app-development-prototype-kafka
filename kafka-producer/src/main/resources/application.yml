@@ -21,18 +21,10 @@ spring:
             producer:
               configuration:
                 value.serializer: app.development.prototype.kafka.producer.event.converter.MessageEventSerializer
-        #          messageEventConsumer-in-0:
-        #            consumer:
-        #              configuration:
-        #                value.deserializer: app.development.prototype.kafka.consumer.event.coverter.MessageEventDeSerializer
         binder:
-          brokers: localhost:9092
+          brokers: ${KAFKA-BROKER:localhost:9092}
       bindings:
         messageEventProducer-out-0:
           destination: msp-dev-message-event-topic
           producer:
             useNativeEncoding: true # Enables using the custom serializer
-#        messageEventConsumer-in-0:
-#          destination: msp-dev-message-event-topic
-#          consumer:
-#            use-native-decoding: true # Enables using the custom deserializer

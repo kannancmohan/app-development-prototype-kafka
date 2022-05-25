@@ -1,4 +1,4 @@
-package app.development.prototype.kafka.consumer.event.coverter;
+package app.development.prototype.kafka.consumer.event.converter;
 
 import app.development.prototype.kafka.consumer.event.MessageEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;

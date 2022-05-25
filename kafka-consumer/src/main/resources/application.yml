@@ -18,23 +18,32 @@ spring:
     stream:
       kafka:
         bindings:
-#          producer-out-0:
-#            producer:
-#              configuration:
-#                value.serializer: com.amrut.prabhu.dto.coverters.MessageSerializer
+          #consumer
           messageEventConsumer-in-0:
             consumer:
               configuration:
-                value.deserializer: app.development.prototype.kafka.consumer.event.coverter.MessageEventDeSerializer
+                value.deserializer: app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
+          #Batch consumer
+          messageEventBatchConsumer-in-0:
+            consumer:
+              configuration:
+                value.deserializer: app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
+                max.poll.records: 10
+                min.fetch.bytes: 5000
+                fetch.max.wait.ms: 1000
         binder:
           brokers: localhost:9092
       bindings:
-#        producer-out-0:
-#          destination: first-topic
-#          producer:
-#            useNativeEncoding: true # Enables using the custom serializer
+        #consumer
         messageEventConsumer-in-0:
           destination: msp-dev-message-event-topic
           group: msp-message-event-group # consumer group name
           consumer:
             use-native-decoding: true # Enables using the custom deserializer
+        #Batch consumer
+        messageEventBatchConsumer-in-0:
+          destination: msp-dev-message-event-topic
+          group: msp-message-event-group # consumer group name
+          consumer:
+            use-native-decoding: true # Enables using the custom deserializer
+            batch-mode: true

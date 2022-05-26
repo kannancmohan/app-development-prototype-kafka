@@ -12,7 +12,7 @@ public class MessageEventBatchConsumer implements Consumer<List<MessageEvent>> {
   @Override
   public void accept(final List<MessageEvent> messageEvents) {
     for (final MessageEvent messageEvent : messageEvents) {
-      LOG.info("Received messageEvent:{}", messageEvent);
+      LOG.info("Received event:{}", messageEvent);
     }
   }
 }

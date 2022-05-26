@@ -11,6 +11,6 @@ public class MessageEventConsumer implements Consumer<MessageEvent> {
 
   @Override
   public void accept(final MessageEvent messageEvent) {
-    LOG.info("Received messageEvent:{}", messageEvent);
+    LOG.info("Received event:{}", messageEvent);
   }
 }

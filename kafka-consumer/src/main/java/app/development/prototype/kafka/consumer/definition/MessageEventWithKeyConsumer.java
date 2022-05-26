@@ -7,9 +7,9 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
-@Component("messageEventConsumerWithKey")
+@Component("messageEventWithKeyConsumer")
 @Slf4j
-public class MessageEventConsumerWithKey implements Consumer<Message<MessageEvent>> {
+public class MessageEventWithKeyConsumer implements Consumer<Message<MessageEvent>> {
 
   @Override
   public void accept(final Message<MessageEvent> messageEventMessage) {

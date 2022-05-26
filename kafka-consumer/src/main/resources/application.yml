@@ -21,7 +21,7 @@ spring:
     config:
       enabled: false # disable retrieval of configuration from the Config Server
     function:
-      definition: messageEventConsumer;messageEventBatchConsumer;messageEventConsumerWithKey #list of the consumer/producer function names
+      definition: messageEventConsumer;messageEventBatchConsumer;messageEventWithKeyConsumer #list of the consumer/producer function names
     stream:
       default-binder: kafka
       kafka:
@@ -45,7 +45,7 @@ spring:
                 #min.fetch.bytes: 5000
                 #fetch.max.wait.ms: 1000
           #consumer with key config
-          messageEventConsumerWithKey-in-0:
+          messageEventWithKeyConsumer-in-0:
             consumer:
               configuration:
                 key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -67,7 +67,7 @@ spring:
             use-native-decoding: true # Enables using the custom deserializer
             batch-mode: true
         #consumer with key config
-        messageEventConsumerWithKey-in-0:
+        messageEventWithKeyConsumer-in-0:
           destination: msp-dev-message-event-topic
           group: msp-message-event-group-3 # consumer group name
           consumer:

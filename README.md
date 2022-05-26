@@ -45,10 +45,10 @@
     kafka-topics.sh --bootstrap-server <kafka-server-host>:<9092> --command-config kafka.properties --list --exclude-internal
     
     ##To view a topic configuration
-    kafka-topics.sh --bootstrap-server <kafka-server-host>:<9092> --command-config kafka_dev.properties --describe --topic <topic-name>
+    kafka-topics.sh --bootstrap-server <kafka-server-host>:<9092> --command-config kafka.properties --describe --topic <topic-name>
 
     ##To send data to a topic
-    kafka-console-producer.sh --bootstrap-server <kafka-server-host>:<9092> --producer.config kafka_dev.properties --topic <topic-name> 
+    kafka-console-producer.sh --bootstrap-server <kafka-server-host>:<9092> --producer.config kafka.properties --topic <topic-name> 
     
     ##To consume data from a topic (from the begining)
-    kafka-console-consumer.sh --bootstrap-server <kafka-server-host>:<9092> --consumer.config kafka_dev.properties --topic <topic-name> --from-beginning --group=<consumer-group-name> 
+    kafka-console-consumer.sh --bootstrap-server <kafka-server-host>:<9092> --consumer.config kafka.properties --topic <topic-name> --from-beginning --group=<consumer-group-name> 

@@ -23,6 +23,7 @@ spring:
     function:
       definition: messageEventConsumer;messageEventBatchConsumer #list of the consumer/producer function names
     stream:
+      default-binder: kafka
       kafka:
         bindings:
           #plain consumer config

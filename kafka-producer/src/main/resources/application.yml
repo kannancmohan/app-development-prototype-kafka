@@ -22,6 +22,7 @@ spring:
     function:
       definition: messageEventProducer #list of the consumer/producer function names
     stream:
+      default-binder: kafka
       kafka:
         bindings:
           messageEventProducer-out-0:

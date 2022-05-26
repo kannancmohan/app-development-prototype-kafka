@@ -6,6 +6,13 @@ management:
   health:
     probes:
       enabled: true
+# uncomment to see additional actuator endpoints for spring cloud stream
+#  endpoints:
+#    web:
+#      exposure:
+#        include:
+#          - bindings
+#          - "*"
 spring:
   application:
     name: app-development-prototype-kafka-producer

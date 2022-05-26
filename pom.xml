@@ -10,25 +10,19 @@
     <relativePath/>
   </parent>
   <artifactId>app-development-prototype-kafka</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${revision}</version>
   <name>app-development-prototype-kafka</name>
   <description>Kafka prototype</description>
   <packaging>pom</packaging>
+
+  <properties>
+    <revision>0.0.1-SNAPSHOT</revision>
+  </properties>
 
   <modules>
     <module>kafka-consumer</module>
     <module>kafka-producer</module>
   </modules>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-stream-binder-kafka</artifactId>
-        <version>3.2.3</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>

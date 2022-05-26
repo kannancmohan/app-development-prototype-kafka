@@ -1,3 +1,8 @@
 package app.development.prototype.kafka.producer.event;
 
-public record MessageEvent(String messageId, String message) {}
+import lombok.Builder;
+
+public record MessageEvent(String messageId, String message) {
+  @Builder
+  public MessageEvent {}
+}

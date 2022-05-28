@@ -20,7 +20,9 @@ import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.DisabledIf;
 
+@DisabledIf(expression = "#{environment['skip.integration.test'] == 'true'}")
 @SpringBootTest
 @EmbeddedKafka
 @TestPropertySource(
@@ -29,18 +31,18 @@ import org.springframework.test.context.TestPropertySource;
       "spring.cloud.stream.kafka.binder.brokers=${spring.embedded.kafka.brokers}",
       // using real kafka
       "spring.autoconfigure.exclude=org.springframework.cloud.stream.test.binder.TestSupportBinderAutoConfiguration",
-      "spring.cloud.stream.bindings.messageEventProducer-out-0.destination=testEmbeddedTopic",
+      "spring.cloud.stream.bindings.messageEventProducer-out-0.destination=testProducerEmbeddedTopic",
       "spring.cloud.stream.kafka.binder.configuration.listeners: PLAINTEXT://${spring.embedded.kafka.brokers}"
     })
 @DirtiesContext
-public class KafkaProducerIntegrationTest {
+final class KafkaProducerIntegrationTest {
 
-  public static final String TEST_TOPIC = "testEmbeddedTopic";
+  public static final String TEST_TOPIC = "testProducerEmbeddedTopic";
   private static final String TEST_CONSUMER_GROUP = "testConsumerGroup";
   @Autowired private SampleProducerService sampleProducerService;
 
   @Test
-  void testSendReceive(@Autowired EmbeddedKafkaBroker embeddedKafka) {
+  void testProducer(@Autowired EmbeddedKafkaBroker embeddedKafka) {
     sampleProducerService.sendMessageEventWithKey("test message");
     sampleProducerService.sendMessageEvent("test message");
 

@@ -11,6 +11,8 @@ import app.development.prototype.kafka.consumer.event.MessageEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -19,8 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
@@ -46,7 +47,8 @@ import org.springframework.test.context.junit.jupiter.DisabledIf;
 @DirtiesContext
 final class KafkaConsumerIntegrationTest {
 
-  public static final String TEST_TOPIC = "testConsumerEmbeddedTopic";
+  private static final String TEST_TOPIC = "testConsumerEmbeddedTopic";
+  private static final String TEST_UUID = "test-uuid";
   @Autowired private EmbeddedKafkaBroker embeddedKafka;
   @SpyBean private MessageEventConsumer messageEventConsumer;
   @SpyBean private MessageEventWithKeyConsumer messageEventWithKeyConsumer;
@@ -55,15 +57,16 @@ final class KafkaConsumerIntegrationTest {
 
   @Test
   void testConsumers() throws JsonProcessingException {
-    final KafkaTemplate<String, String> producer = buildKafkaTemplate();
-    producer.setDefaultTopic(TEST_TOPIC);
-    final MessageEvent messageEvent =
+    final MessageEvent event =
         MessageEvent.builder()
-            .messageId("test-uuid")
+            .messageId(TEST_UUID)
             .timeStamp("test-timestamp")
             .message("test-message")
             .build();
-    producer.sendDefault(new ObjectMapper().writeValueAsString(messageEvent));
+    final ProducerRecord<String, String> producerRecord =
+        new ProducerRecord<>(TEST_TOPIC, TEST_UUID, new ObjectMapper().writeValueAsString(event));
+    final Producer<String, String> producer = getProducer();
+    producer.send(producerRecord);
     producer.flush();
 
     verify(messageEventConsumer, timeout(5000).times(1))
@@ -75,15 +78,19 @@ final class KafkaConsumerIntegrationTest {
         messageEventWithKeyArgumentCaptor.getValue();
     assertNotNull(messageEventReceived);
     assertNotNull(messageEventWithKeyReceived);
-    assertEquals("test-uuid", messageEventReceived.messageId());
-    assertEquals("test-uuid", messageEventWithKeyReceived.getPayload().messageId());
+    assertEquals(TEST_UUID, messageEventReceived.messageId());
+    assertNotNull(messageEventWithKeyReceived.getHeaders());
+    assertEquals(
+        TEST_UUID,
+        messageEventWithKeyReceived
+            .getHeaders()
+            .get(KafkaHeaders.RECEIVED_MESSAGE_KEY, String.class));
   }
 
-  private KafkaTemplate<String, String> buildKafkaTemplate() {
+  private Producer<String, String> getProducer() {
     final Map<String, Object> producerProps = KafkaTestUtils.producerProps(embeddedKafka);
-    producerProps.put("key.serializer", StringSerializer.class);
-    producerProps.put("value.serializer", StringSerializer.class);
-    ProducerFactory<String, String> pf = new DefaultKafkaProducerFactory<>(producerProps);
-    return new KafkaTemplate<>(pf);
+    return new DefaultKafkaProducerFactory<>(
+            producerProps, new StringSerializer(), new StringSerializer())
+        .createProducer();
   }
 }

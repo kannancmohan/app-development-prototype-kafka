@@ -37,7 +37,7 @@ import org.springframework.test.context.junit.jupiter.DisabledIf;
 @DirtiesContext
 final class KafkaProducerIntegrationTest {
 
-  public static final String TEST_TOPIC = "testProducerEmbeddedTopic";
+  private static final String TEST_TOPIC = "testProducerEmbeddedTopic";
   private static final String TEST_CONSUMER_GROUP = "testConsumerGroup";
   @Autowired private SampleProducerService sampleProducerService;
 

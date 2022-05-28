@@ -20,10 +20,10 @@
       <artifactId>spring-kafka-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <!-- Added so that we can write integration test without connecting to a messaging system -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-stream-test-support</artifactId>
-      <version>3.2.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -35,16 +35,16 @@ import org.springframework.test.context.TestPropertySource;
 @DirtiesContext
 public class KafkaProducerIntegrationTest {
 
-  @Autowired private SampleProducerService sampleProducerService;
   public static final String TEST_TOPIC = "testEmbeddedTopic";
   private static final String TEST_CONSUMER_GROUP = "testConsumerGroup";
+  @Autowired private SampleProducerService sampleProducerService;
 
   @Test
   void testSendReceive(@Autowired EmbeddedKafkaBroker embeddedKafka) {
     sampleProducerService.sendMessageEventWithKey("test message");
     sampleProducerService.sendMessageEvent("test message");
 
-    Map<String, Object> consumerProps =
+    final Map<String, Object> consumerProps =
         KafkaTestUtils.consumerProps(TEST_CONSUMER_GROUP, "false", embeddedKafka);
     consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
     consumerProps.put("key.deserializer", StringDeserializer.class);
@@ -52,7 +52,7 @@ public class KafkaProducerIntegrationTest {
     DefaultKafkaConsumerFactory<String, String> consumerFactory =
         new DefaultKafkaConsumerFactory<>(consumerProps);
 
-    Consumer<String, String> consumer = consumerFactory.createConsumer();
+    final Consumer<String, String> consumer = consumerFactory.createConsumer();
     consumer.assign(Collections.singleton(new TopicPartition(TEST_TOPIC, 0)));
     ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10));
     consumer.commitSync();

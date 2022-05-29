@@ -13,6 +13,8 @@
     ## Run
     * mvn spring-boot:run
 
+    ## Send test kafka message using endpoint http://localhost:8883/kafka/producer/hello-world-message
+
 ## spring actuator
 
     http://localhost:8883/actuator

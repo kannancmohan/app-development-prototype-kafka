@@ -1,0 +1,55 @@
+---
+server:
+  port: 8884
+# configuration for spring actuator
+management:
+  health:
+    probes:
+      enabled: true
+# uncomment to see additional actuator endpoints for spring cloud stream
+#  endpoints:
+#    web:
+#      exposure:
+#        include:
+#          - bindings
+#          - "*"
+spring:
+  application:
+    name: app-development-prototype-kafka-processor
+  cloud:
+    config:
+      enabled: false # disable retrieval of configuration from the Config Server
+    function:
+      definition: messageProcessor #list of the consumer/producer function names
+    stream:
+      default-binder: kafka
+      kafka:
+        binder:
+          brokers: ${KAFKA-BROKER:localhost:9092}
+#          configuration:
+#            default:
+#              key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde # add this if you are using kafka events with key
+        bindings:
+          # processor consumer config
+          messageProcessor-in-0:
+            consumer:
+              configuration:
+                value.deserializer: app.development.prototype.kafka.processor.event.converter.MessageEventDeSerializer
+          # processor producer config
+          messageProcessor-out-0:
+            producer:
+              configuration:
+                value.serializer: app.development.prototype.kafka.processor.event.converter.UpdatedMessageEventSerializer
+
+      bindings:
+        # processor consumer config
+        messageProcessor-in-0:
+          destination: msp-dev-message-event-topic
+          group: msp-message-event-group-4 # consumer group name
+          consumer:
+            use-native-decoding: true # Enables using the custom deserializer
+        # processor producer config
+        messageProcessor-out-0:
+          destination: msp-dev-updated-message-event-topic
+          producer:
+            useNativeEncoding: true # Enables using the custom serializer

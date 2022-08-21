@@ -1,15 +1,15 @@
-package app.development.prototype.kafka.consumer;
+package com.kcm.msp.dev.app.development.prototype.kafka.consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import app.development.prototype.kafka.consumer.definition.MessageEventConsumer;
-import app.development.prototype.kafka.consumer.definition.MessageEventWithKeyConsumer;
-import app.development.prototype.kafka.consumer.event.MessageEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kcm.msp.dev.app.development.prototype.kafka.consumer.definition.MessageEventConsumer;
+import com.kcm.msp.dev.app.development.prototype.kafka.consumer.definition.MessageEventWithKeyConsumer;
+import com.kcm.msp.dev.app.development.prototype.kafka.consumer.event.MessageEvent;
 import java.util.Map;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;

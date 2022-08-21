@@ -20,8 +20,11 @@
     * java 17
     * Install Docker for running kafka instance localy. check the docker-compose.yml file
 
-    ## Build
+    Build application 
     * mvn clean install
+    * mvn clean install -Dskip.integration.test=true [To skip integration test]
+    * mvn clean install -Darchunit.skip=true [To skip archunit test]
+    * mvn clean install -Pquality-assurance-check [To include owasp check and other quality cheks]
 
     ## Run
     check module specific README file

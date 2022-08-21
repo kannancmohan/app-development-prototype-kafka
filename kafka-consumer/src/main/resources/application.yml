@@ -35,12 +35,12 @@ spring:
           messageEventConsumer-in-0:
             consumer:
               configuration:
-                value.deserializer: app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
+                value.deserializer: com.kcm.msp.dev.app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
           #Batch consumer config
           messageEventBatchConsumer-in-0:
             consumer:
               configuration:
-                value.deserializer: app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
+                value.deserializer: com.kcm.msp.dev.app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
                 max.poll.records: 5
                 #min.fetch.bytes: 5000
                 #fetch.max.wait.ms: 1000
@@ -49,7 +49,7 @@ spring:
             consumer:
               configuration:
                 key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
-                value.deserializer: app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
+                value.deserializer: com.kcm.msp.dev.app.development.prototype.kafka.consumer.event.converter.MessageEventDeSerializer
 
       bindings:
         #simple consumer config

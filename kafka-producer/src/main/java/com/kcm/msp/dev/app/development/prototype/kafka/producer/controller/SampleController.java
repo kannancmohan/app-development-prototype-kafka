@@ -1,6 +1,6 @@
-package app.development.prototype.kafka.producer.controller;
+package com.kcm.msp.dev.app.development.prototype.kafka.producer.controller;
 
-import app.development.prototype.kafka.producer.service.SampleProducerService;
+import com.kcm.msp.dev.app.development.prototype.kafka.producer.service.SampleProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

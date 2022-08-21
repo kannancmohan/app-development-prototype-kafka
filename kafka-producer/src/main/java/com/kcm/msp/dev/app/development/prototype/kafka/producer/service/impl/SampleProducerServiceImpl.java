@@ -1,7 +1,7 @@
-package app.development.prototype.kafka.producer.service.impl;
+package com.kcm.msp.dev.app.development.prototype.kafka.producer.service.impl;
 
-import app.development.prototype.kafka.producer.event.MessageEvent;
-import app.development.prototype.kafka.producer.service.SampleProducerService;
+import com.kcm.msp.dev.app.development.prototype.kafka.producer.event.MessageEvent;
+import com.kcm.msp.dev.app.development.prototype.kafka.producer.service.SampleProducerService;
 import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.Date;

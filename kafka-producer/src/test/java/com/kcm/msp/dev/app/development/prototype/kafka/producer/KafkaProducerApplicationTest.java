@@ -1,4 +1,4 @@
-package app.development.prototype.kafka.producer;
+package com.kcm.msp.dev.app.development.prototype.kafka.producer;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

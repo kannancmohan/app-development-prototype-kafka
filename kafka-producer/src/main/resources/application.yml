@@ -34,7 +34,7 @@ spring:
           messageEventProducer-out-0:
             producer:
               configuration:
-                value.serializer: app.development.prototype.kafka.producer.event.converter.MessageEventSerializer
+                value.serializer: com.kcm.msp.dev.app.development.prototype.kafka.producer.event.converter.MessageEventSerializer
 
       bindings:
         # simple producer

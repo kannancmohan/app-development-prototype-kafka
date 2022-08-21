@@ -1,4 +1,4 @@
-package app.development.prototype.kafka.producer.event;
+package com.kcm.msp.dev.app.development.prototype.kafka.producer.event;
 
 import lombok.Builder;
 

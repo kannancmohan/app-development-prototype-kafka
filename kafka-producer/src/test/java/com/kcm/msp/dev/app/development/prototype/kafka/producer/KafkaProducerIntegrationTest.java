@@ -1,8 +1,8 @@
-package app.development.prototype.kafka.producer;
+package com.kcm.msp.dev.app.development.prototype.kafka.producer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import app.development.prototype.kafka.producer.service.SampleProducerService;
+import com.kcm.msp.dev.app.development.prototype.kafka.producer.service.SampleProducerService;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;

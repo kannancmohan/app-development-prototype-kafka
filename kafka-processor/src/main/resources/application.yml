@@ -34,12 +34,12 @@ spring:
           messageProcessor-in-0:
             consumer:
               configuration:
-                value.deserializer: app.development.prototype.kafka.processor.event.converter.MessageEventDeSerializer
+                value.deserializer: com.kcm.msp.dev.app.development.prototype.kafka.processor.event.converter.MessageEventDeSerializer
           # processor producer config
           messageProcessor-out-0:
             producer:
               configuration:
-                value.serializer: app.development.prototype.kafka.processor.event.converter.UpdatedMessageEventSerializer
+                value.serializer: com.kcm.msp.dev.app.development.prototype.kafka.processor.event.converter.UpdatedMessageEventSerializer
 
       bindings:
         # processor consumer config

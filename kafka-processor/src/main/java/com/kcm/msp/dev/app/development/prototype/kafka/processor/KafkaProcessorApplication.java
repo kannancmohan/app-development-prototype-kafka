@@ -1,4 +1,4 @@
-package com.kcm.msp.dev.app.app.development.prototype.kafka.processor;
+package com.kcm.msp.dev.app.development.prototype.kafka.processor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

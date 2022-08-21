@@ -1,7 +1,7 @@
-package com.kcm.msp.dev.app.app.development.prototype.kafka.processor.definition;
+package com.kcm.msp.dev.app.development.prototype.kafka.processor.definition;
 
-import com.kcm.msp.dev.app.app.development.prototype.kafka.processor.event.MessageEvent;
-import com.kcm.msp.dev.app.app.development.prototype.kafka.processor.event.UpdatedMessageEvent;
+import com.kcm.msp.dev.app.development.prototype.kafka.processor.event.MessageEvent;
+import com.kcm.msp.dev.app.development.prototype.kafka.processor.event.UpdatedMessageEvent;
 import java.util.function.Function;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

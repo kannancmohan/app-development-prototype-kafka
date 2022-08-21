@@ -1,7 +1,7 @@
-package com.kcm.msp.dev.app.app.development.prototype.kafka.processor.event.converter;
+package com.kcm.msp.dev.app.development.prototype.kafka.processor.event.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kcm.msp.dev.app.app.development.prototype.kafka.processor.event.MessageEvent;
+import com.kcm.msp.dev.app.development.prototype.kafka.processor.event.MessageEvent;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.apache.kafka.common.errors.SerializationException;

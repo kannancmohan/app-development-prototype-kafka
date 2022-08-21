@@ -1,10 +1,10 @@
-package com.kcm.msp.dev.app.app.development.prototype.kafka.processor;
+package com.kcm.msp.dev.app.development.prototype.kafka.processor;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kcm.msp.dev.app.app.development.prototype.kafka.processor.event.MessageEvent;
+import com.kcm.msp.dev.app.development.prototype.kafka.processor.event.MessageEvent;
 import java.util.Map;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

@@ -8,7 +8,7 @@
     <version>${revision}</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>kafka-consumer</artifactId>
+  <artifactId>app-development-prototype-kafka-consumer</artifactId>
 
   <dependencies>
     <dependency>
